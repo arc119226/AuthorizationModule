@@ -1,0 +1,77 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+ 	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+ 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+	<!-- scan package root setting -->
+	<context:component-scan
+		base-package="com.arcare.oauth.*" />
+	<context:annotation-config />
+	<mvc:annotation-driven>
+		<mvc:message-converters
+			register-defaults="true">
+			<bean
+				class="org.springframework.http.converter.StringHttpMessageConverter">
+				<constructor-arg value="UTF-8" />
+			</bean>
+			<bean
+				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/html;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+	
+	<!-- 需要dev或admin登入的路徑 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<!-- add platform path -->
+			<mvc:mapping path="/" />
+			<!-- 管理者 -> 所有開發者管理 -->
+			<mvc:mapping path="/developer/**" />
+			<!-- 管理者 -> 所有服務管理 -->
+			<mvc:mapping path="/clientInfo/**" />
+
+			<!-- 開法者 -> 申請新服務 我的服務 -->
+			<mvc:mapping path="/myClientInfo/**" />
+
+			<!-- 首頁 -->
+			<mvc:mapping path="/index" />
+			<mvc:mapping path="/index/**" />
+
+			<!-- 排除路徑 -->
+			<!-- exclude oAuth endpoint -->
+			<mvc:exclude-mapping path="/auth/**" />
+			<mvc:exclude-mapping path="/authorize/**" />
+			<mvc:exclude-mapping path="/resource/**" />
+
+			<!-- exclude fake api -->
+			<mvc:exclude-mapping path="/membercenter/**" />
+			<mvc:exclude-mapping path="/clientService/" />
+
+			<bean class="com.arcare.oauth.interceptor.PlatformInterceptor" />
+		</mvc:interceptor>
+
+		<!-- 只有admin能登入的路徑 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/developer/**" />
+			<mvc:mapping path="/clientInfo/**" />
+			<bean class="com.arcare.oauth.interceptor.AdminInterceptor" />
+		</mvc:interceptor>
+
+		<mvc:interceptor>
+			<mvc:mapping path="/authorize/token/**" />
+			<bean class="com.arcare.oauth.interceptor.TokenInterceptor" />
+		</mvc:interceptor>
+
+		<mvc:interceptor>
+			<mvc:mapping path="/resource/**" />
+			<bean class="com.arcare.oauth.interceptor.ResourceInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+</beans>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>  
+   <!-- Base Definition -->
+   <definition name="base-definition"
+       template="/WEB-INF/views/tiles/layouts/defaultLayout.jsp">  
+       <put-attribute name="title" value="" />  
+       <put-attribute name="cdnbase" value="//127.0.0.1" />  
+       <put-attribute name="header" value="/WEB-INF/views/tiles/template/defaultHeader.jsp" />  
+       <put-attribute name="menu" value="/WEB-INF/views/tiles/template/defaultAsideLeft.jsp" />  
+       <put-attribute name="sidebar" value="/WEB-INF/views/tiles/template/defaultSidebar.jsp" />  
+       <put-attribute name="body" value="" />  
+       <put-attribute name="footer" value="/WEB-INF/views/tiles/template/defaultFooter.jsp" />  
+   </definition>  
+   
+   <!-- developer platform start -->
+   
+   <!-- Login Page -->
+	<definition template="/WEB-INF/views/pages/auth/login.jsp" name="login">
+		<put-attribute name="cdnbase" value="//127.0.0.1" /> 
+	</definition>
+
+   <!-- index -->
+   <definition name="home" extends="base-definition">  
+       <put-attribute name="title" value="" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/home.jsp" />  
+   </definition>  
+   <!-- Product Page -->
+   <definition name="products" extends="base-definition">  
+       <put-attribute name="title" value="" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/products.jsp" />  
+   </definition>  
+   <!-- Contact-us Page -->
+   <definition name="contactus" extends="base-definition">  
+       <put-attribute name="title" value="" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/contactus.jsp" />  
+   </definition>  
+  
+  <!-- 開發者管理  list-->
+  <definition name="developer/list" extends="base-definition">  
+       <put-attribute name="title" value="" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/developer/list.jsp" />  
+   </definition>
+   <!-- 開發者管理  show-->
+   <definition name="developer/show" extends="base-definition">  
+       <put-attribute name="title" value="" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/developer/show.jsp" />  
+   </definition>  
+   <!-- 開發者管理  form-->
+   <definition name="developer/form" extends="base-definition">  
+       <put-attribute name="title" value="" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/developer/form.jsp" />  
+   </definition>
+   
+   <!-- 新申請 initlist -->
+   <definition name="clientInfo/initlist" extends="base-definition">  
+       <put-attribute name="title" value="" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/clientInfo/initlist.jsp" />  
+   </definition>
+   <!-- 審核中 reviewlist -->
+   <definition name="clientInfo/reviewinglist" extends="base-definition">  
+       <put-attribute name="title" value="" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/clientInfo/reviewinglist.jsp" />  
+   </definition>
+   <!-- 拒絕 denylist -->
+   <definition name="clientInfo/denylist" extends="base-definition">  
+       <put-attribute name="title" value="" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/clientInfo/denylist.jsp" />  
+   </definition>
+   <!-- 停用 stoplist -->
+   <definition name="clientInfo/stoplist" extends="base-definition">  
+       <put-attribute name="title" value="" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/clientInfo/stoplist.jsp" />  
+   </definition>
+    <!-- 通過 readylist -->
+   <definition name="clientInfo/readylist" extends="base-definition">  
+       <put-attribute name="title" value="" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/clientInfo/readylist.jsp" />  
+   </definition>
+   
+   <!-- 開通 publishlist -->
+   <definition name="clientInfo/publishlist" extends="base-definition">  
+       <put-attribute name="title" value="" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/clientInfo/publishlist.jsp" />  
+   </definition>
+   <!-- 管理服務 form-->
+ 	<definition name="clientInfo/form" extends="base-definition">  
+      <put-attribute name="title" value="" />  
+      <put-attribute name="body" value="/WEB-INF/views/pages/clientInfo/form.jsp" />  
+  	</definition>
+  	<!-- 服務檢視 show-->
+ 	<definition name="clientInfo/show" extends="base-definition">  
+      <put-attribute name="title" value="" />  
+      <put-attribute name="body" value="/WEB-INF/views/pages/clientInfo/show.jsp" />  
+  	</definition>
+   
+   <!-- 我的服務 list-->
+ 	<definition name="myClientInfo/list" extends="base-definition">  
+      <put-attribute name="title" value="" />  
+      <put-attribute name="body" value="/WEB-INF/views/pages/myclientinfo/list.jsp" />  
+  	</definition>
+  	 <!-- 我的服務 show-->
+ 	<definition name="myClientInfo/show" extends="base-definition">  
+      <put-attribute name="title" value="" />  
+      <put-attribute name="body" value="/WEB-INF/views/pages/myclientinfo/show.jsp" />  
+  	</definition>
+  	<!-- 我的服務 form-->
+ 	<definition name="myClientInfo/form" extends="base-definition">  
+      <put-attribute name="title" value="" />  
+      <put-attribute name="body" value="/WEB-INF/views/pages/myclientinfo/form.jsp" />  
+  	</definition>
+  	
+  	<!-- develope platform end -->
+  	
+  	<!-- autorize server start -->
+  	<!--oauth Login Page -->
+	<definition name="oauth/login" template="/WEB-INF/views/pages/oauth/login.jsp" >
+		<put-attribute name="cdnbase" value="//127.0.0.1" /> 
+	</definition>
+	<!-- autorize server end -->
+	
+	<!-- client test web page -->
+	<definition name="event/grantCode" template="/WEB-INF/views/pages/event/grantCode.jsp" ></definition>
+
+	<!-- client test web page -->
+	<definition name="event/password" template="/WEB-INF/views/pages/event/password.jsp" ></definition>
+
+</tiles-definitions>
